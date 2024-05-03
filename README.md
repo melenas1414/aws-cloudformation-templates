@@ -19,6 +19,26 @@ This repository contains a collection of CloudFormation templates for deploying 
 * **Resources:**
 	+ S3 bucket with CloudFront distribution and Route 53 alias record
 
+### 2. ECS with Autoscaling and ELB
+
+* **Template:** `ecs-autoscaling-elb.yaml`
+* **Description:** Deploys an ECS cluster with autoscaling and an Elastic Load Balancer (ELB).
+* **Parameters:**
+	+ `VpcId`: The ID of the VPC where the resources will be created
+	+ `PrivateSubnet1` and `PrivateSubnet2`: The IDs of the private subnets where the resources will be created
+	+ `PublicSubnet1` and `PublicSubnet2`: The IDs of the public subnets where the resources will be created
+	+ `ECRRepositoryArn`: The ARN of the ECR repository containing the Docker image to deploy
+	+ `ServiceName`: The name of the service to deploy
+	+ `TaskName`: The name of the task to deploy
+	+ `ClusterName`: The name of the ECS cluster to use for the service
+	+ `PortMappings`: The port mappings for the container
+	+ `ECSClusterId`: The ID of the ECS cluster
+	+ `CertificateArn`: The ARN of the SSL certificate to use
+	+ `LogsGroup`: The name of the CloudWatch Logs group to use for the container
+	+ `CPU` and `Memory`: The CPU and memory settings for the task
+* **Resources:**
+	+ ECS cluster with autoscaling and ELB
+	
 **Adding New Templates**
 ----------------------
 
