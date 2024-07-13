@@ -5,9 +5,6 @@ Parameters:
   S3BucketName:
     Type: String
     Default: my-s3-bucket
-  CertificateArn:
-    Type: String
-    Description: Insert ARN Certificate for used, only us-east-1
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
