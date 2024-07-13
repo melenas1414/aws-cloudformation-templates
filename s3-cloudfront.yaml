@@ -34,10 +34,6 @@ Resources:
               OriginAccessIdentity: ''
         Enabled: true
         DefaultRootObject: index.html
-        ViewerCertificate:
-          AcmCertificateArn: !Ref CertificateArn
-          SslSupportMethod: sni-only
-          MinimumProtocolVersion: TLSv1.2_2018
         DefaultCacheBehavior:
           TargetOriginId: s3-origin
           ViewerProtocolPolicy: redirect-to-https
