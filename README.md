@@ -6,7 +6,49 @@ This repository contains a collection of CloudFormation templates for deploying 
 **Available Templates**
 -----------------------
 
-### 1. S3 Bucket with CloudFront and Route 53
+> **🔒 Security Enhancement:** The "secure" templates include additional security features like AWS Origin Access Control (OAC), comprehensive error handling, and enhanced S3 privacy controls. Both versions are fully functional - choose based on your security requirements.
+
+### 1. S3 Bucket with CloudFront (Secure)
+
+* **Template:** `s3-cloudfront-secure.yaml`
+* **Description:** Deploys a private S3 bucket with CloudFront distribution using Origin Access Control (OAC) for enhanced security.
+* **Parameters:**
+	+ `S3BucketName`: The name of the S3 bucket to create
+	+ `ErrorPagePath`: Path to the error page for 4xx and 5xx errors (default: /index.html)
+* **Resources:**
+	+ Private S3 bucket with public access blocked
+	+ CloudFront distribution with Origin Access Control
+	+ Custom error page handling for all HTTP error codes
+	+ S3 bucket policy allowing only CloudFront access
+
+### 2. S3 Bucket with CloudFront and Route 53 (Secure)
+
+* **Template:** `s3-cloudfront-route53-secure.yaml`
+* **Description:** Deploys a private S3 bucket with CloudFront distribution and Route 53 DNS using Origin Access Control (OAC) for enhanced security.
+* **Parameters:**
+	+ `S3BucketName`: The name of the S3 bucket to create
+	+ `HostedZoneName`: The name of the Route 53 hosted zone
+	+ `HostedZoneId`: The ID of the Route 53 hosted zone
+	+ `CertificateArn`: The ARN of the SSL certificate to use (must be in us-east-1)
+	+ `SubdomainName`: The subdomain name for the CloudFront distribution
+	+ `ErrorPagePath`: Path to the error page for 4xx and 5xx errors (default: /index.html)
+* **Resources:**
+	+ Private S3 bucket with public access blocked
+	+ CloudFront distribution with Origin Access Control and custom domain
+	+ Route 53 CNAME record for custom domain
+	+ Custom error page handling for all HTTP error codes
+	+ S3 bucket policy allowing only CloudFront access
+
+### 3. S3 Bucket with CloudFront
+
+* **Template:** `s3-cloudfront.yaml`
+* **Description:** Deploys an S3 bucket with CloudFront distribution for static website hosting.
+* **Parameters:**
+	+ `S3BucketName`: The name of the S3 bucket to create
+* **Resources:**
+	+ S3 bucket with CloudFront distribution
+
+### 4. S3 Bucket with CloudFront and Route 53
 
 * **Template:** `s3-cloudfront-route53.yaml`
 * **Description:** Deploys an S3 bucket with a CloudFront distribution and a Route 53 alias record.
@@ -19,7 +61,7 @@ This repository contains a collection of CloudFormation templates for deploying 
 * **Resources:**
 	+ S3 bucket with CloudFront distribution and Route 53 alias record
 
-### 2. ECS with Autoscaling and ELB
+### 5. ECS with Autoscaling and ELB
 
 * **Template:** `ecs-autoscaling-elb.yaml`
 * **Description:** Deploys an ECS cluster with autoscaling and an Elastic Load Balancer (ELB).
